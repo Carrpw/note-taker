@@ -1,6 +1,7 @@
 // Routes for the api notes page to get the notes, push the notes to be stored, and delete the notes
 const fs = require("fs");
 let constant = JSON.parse(fs.readFileSync("./db.json", "utf8"));
+const path = require("path");
 
 module.exports = function(app) {
     app.get("/api/notes", function(req, res) {
@@ -30,4 +31,13 @@ module.exports = function(app) {
         fs.writeFileSync("./db.json", JSON.stringify(constant));
         res.json(constant);
     });
+
+    app.get("/notes", function(req, res) {
+        res.sendFile(path.join(__dirname, "/notes.html"));
+    });
+    
+    app.get("/", function(req, res) {
+        res.sendFile(path.join(__dirname, "/index.html"));
+    });
+    
 };

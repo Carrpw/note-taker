@@ -12,8 +12,7 @@ app.use("/assets", express.static("./assets"));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes for the api and htmls
-require("./htmlRoutes")(app);
-require("./apiRoutes")(app);
+require("./routes")(app);
 
 // Lets the port listen for commands
 app.listen(PORT, function() {
