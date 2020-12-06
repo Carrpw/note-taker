@@ -1,26 +1,21 @@
-// Dependencies
-// =============================================================
+// Lets it write files and run express
 const express = require("express");
 const fs = require("fs");
 
+// Lets express run and sets where the port is
+const app = express();
+const PORT = process.env.PORT || 3000
 
-// Sets up the Express App
-// =============================================================
-var app = express();
-var PORT = process.env.PORT || 8080
-
-// Sets up the Express app to handle data parsing
-// =============================================================
-app.use(express.urlencoded({ extended: true }));
+// Middleware
 app.use(express.json());
 app.use("/assets", express.static("./assets"));
+app.use(express.urlencoded({ extended: true }));
 
+// Routes for the api and htmls
+require("./htmlRoutes")(app);
+require("./apiRoutes")(app);
 
-require("./routes/htmlRoutes")(app);
-require("./routes/apiRoutes")(app);
-
-// Starts the server to begin listening
-// =============================================================
+// Lets the port listen for commands
 app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+    console.log("App is listening on PORT " + PORT);
 });
