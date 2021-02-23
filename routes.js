@@ -7,6 +7,14 @@ module.exports = function(app) {
     app.get("/api/notes", function(req, res) {
         res.json(constant);
     });
+    app.get("/api/puppies", function(req, res) {
+        res.json(constant);
+    });
+    app.post("/api/puppies", function(req, res) {
+        let newPuppy = req.body;
+        fs.writeFileSync("./db.json", JSON.stringify(constant));
+        
+    })
     app.get("/api/notes:id", function(req, res) {
         res.json(constant[Number(req.params.id)]);
     });
